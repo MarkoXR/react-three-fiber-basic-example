@@ -1,10 +1,12 @@
 import { useFrame, useLoader } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
-import { gstime } from 'satellite.js'
+import { constants, gstime } from 'satellite.js'
 import { Color, SRGBColorSpace, TextureLoader } from 'three'
+import { objectName } from './object-name'
+import {SCALE} from './constants';
+import Satellites  from './Satellites.tsx'
 
-const EARTH_MESH = 'EARTH_MESH'
-const earthRadius = 6371 * 0.0001 // Scaled down for visualization
+const earthRadius = constants.earthRadius * SCALE;
 
 export function Earth() {
   const meshRef = useRef()
@@ -25,9 +27,10 @@ export function Earth() {
   })
 
   return (
-    <mesh ref={meshRef} name={EARTH_MESH} position={[0, 0, 0]}>
+    <mesh ref={meshRef} name={objectName.EARTH_MESH} position={[0, 0, 0]}>
       <sphereGeometry args={[earthRadius, 64, 32]} />
       <meshLambertMaterial attach="material" map={texture} color={texture ? new Color('white') : 0x005f99} />
+      <Satellites />
     </mesh>
   )
 }
