@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
+import { Earth } from './Earth'
 
 function Box(props) {
   // This reference gives us direct access to the THREE.Mesh object
@@ -31,8 +32,7 @@ export default function App() {
       <ambientLight intensity={Math.PI / 2} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-      <Box position={[-1.2, 0, 0]} />
-      <Box position={[1.2, 0, 0]} />
+      <Earth position={[0, 0, 0]} />
       <OrbitControls />
     </Canvas>
   )
